@@ -48,7 +48,8 @@ const App = () => {
   }, []);
 
   async function connect() {
-    if (window.ethereum) {
+    try {
+      if (window.ethereum) {
       setIniting(true); // Start init status
 
       // Get Metamask provider
@@ -102,6 +103,9 @@ const App = () => {
       setSpendingSigner(schSigner);
 
       setIniting(false); // End init status
+      }
+    } catch (e) {
+      console.log(e);
     }
   }
 
