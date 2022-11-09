@@ -211,10 +211,41 @@ const App = () => {
       )
     );
   }
-  
+
   async function logBridges() {
     const bridges = await fetchBridgeData();
     console.log("Known bridges on Testnet:", bridges);
+  }
+
+  async function donateStuff() {
+    try {
+      const fromAmount: bigint = ethers.utils
+        .parseEther(amount.toString())
+        .toBigInt();
+
+      let txId = await aztecConnect(
+        account0!,
+        spendingSigner!,
+        6, // Testnet bridge id of CurveStEthBridge
+        fromAmount,
+        "ETH",
+        "ETH",
+        undefined,
+        undefined,
+        1e18, // Min acceptable amount of stETH per ETH
+        TxSettlementTime.NEXT_ROLLUP,
+        sdk!
+      );
+
+      console.log("Bridge TXID:", txId);
+      console.log(
+        "View TX on Explorer:",
+        `https://aztec-connect-testnet-explorer.aztec.network/tx/${txId.toString()}`
+      );
+      setTxId(txId);
+    } catch (e) {
+      console.log(e); // e.g. fromAmount > user's balance
+    }
   }
 
   return (

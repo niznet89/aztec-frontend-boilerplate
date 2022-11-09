@@ -16,7 +16,7 @@ export async function fetchBridgeData() {
     provider,
     testnetAddress as any
   );
-  console.log(dataProvider)
+
   const bridges = await dataProvider.getBridges();
   return bridges;
 }
