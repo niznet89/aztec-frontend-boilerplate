@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aztec/sdk": "^2.1.45",
-    "@aztec/bridge-clients": "^0.1.62",
+    "@aztec/sdk": "^2.1.50",
+    "@aztec/bridge-clients": "^0.1.72",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -26,9 +26,8 @@
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "yarn copy:sdk-resources",
-    "copy:sdk-resources": "cp ./node_modules/@aztec/barretenberg/wasm/barretenberg.wasm ./public/ && cp ./node_modules/@aztec/barretenberg/worker.js ./public/"
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": [
