@@ -15,8 +15,8 @@ import {
   TxId,
 } from "@aztec/sdk";
 
-import { depositEthToAztec, registerAccount, aztecConnect } from "./utils";
-import { fetchBridgeData } from "./bridge-data";
+import { depositEthToAztec, registerAccount, aztecConnect } from "./utils.js";
+import { fetchBridgeData } from "./bridge-data.js";
 
 declare var window: any;
 

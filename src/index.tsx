@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BridgeDataProvider } from "./bridge-data";
+import App from "./App.js";
+import reportWebVitals from "./reportWebVitals.js";
+import { BridgeDataProvider } from "./bridge-data.js";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
