@@ -217,36 +217,60 @@ const App = () => {
     console.log("Known bridges on Testnet:", bridges);
   }
 
-  async function donateStuff() {
-    try {
-      const fromAmount: bigint = ethers.utils
-        .parseEther(amount.toString())
-        .toBigInt();
+//   async function donateStuff() {
+//     const provider = new ethers.providers.Web3Provider(window.ethereum);
+//     const mmSigner = provider.getSigner();
+//     console.log(mmSigner)
 
-      let txId = await aztecConnect(
-        account0!,
-        spendingSigner!,
-        6, // Testnet bridge id of CurveStEthBridge
-        fromAmount,
-        "ETH",
-        "ETH",
-        undefined,
-        undefined,
-        1e18, // Min acceptable amount of stETH per ETH
-        TxSettlementTime.NEXT_ROLLUP,
-        sdk!
-      );
+//     const tx = {
+//       to: "0x209FDD873f4296Cb41572315cD0553e2bd511ddC",
+//       value: ethers.utils.parseEther("0"),
+//       nonce: await provider.getTransactionCount("0x36781B49A5E29C46c161acF5A42dFea57975e00A", "latest"),
+//       gasLimit: ethers.utils.hexlify(10000),
+//       maxFeePerGas: ethers.utils.hexlify(300),
+//       maxPriorityFeePerGas: ethers.utils.hexlify(10),
+//       data: "0xfbeab65f000000000000000000000x8258Fb74CD1Ce9C9210713fC506762d9577Cba8F"
+//   };
 
-      console.log("Bridge TXID:", txId);
-      console.log(
-        "View TX on Explorer:",
-        `https://aztec-connect-testnet-explorer.aztec.network/tx/${txId.toString()}`
-      );
-      setTxId(txId);
-    } catch (e) {
-      console.log(e); // e.g. fromAmount > user's balance
-    }
-  }
+//   mmSigner.sendTransaction(tx).then((transaction) => {
+//     console.dir(transaction);
+//     alert("Send finished!");
+// });
+
+//     // const data = await provider.call({
+//     //   to: "<your_contract_address>",
+//     //   data: ethers.utils.solidityPack(["address"], ["0x8258Fb74CD1Ce9C9210713fC506762d9577Cba8F"])
+//     // })
+
+//     try {
+//       const fromAmount: bigint = ethers.utils
+//         .parseEther(amount.toString())
+//         .toBigInt();
+
+//       let txId = await aztecConnect(
+//         account0!,
+//         spendingSigner!,
+//         12, // Testnet bridge id of CurveStEthBridge
+//         fromAmount,
+//         "ETH",
+//         "ETH",
+//         undefined,
+//         undefined,
+//         1e18, // Min acceptable amount of stETH per ETH
+//         TxSettlementTime.NEXT_ROLLUP,
+//         sdk!
+//       );
+
+//       console.log("Bridge TXID:", txId);
+//       console.log(
+//         "View TX on Explorer:",
+//         `https://aztec-connect-testnet-explorer.aztec.network/tx/${txId.toString()}`
+//       );
+//       setTxId(txId);
+//     } catch (e) {
+//       console.log(e); // e.g. fromAmount > user's balance
+//     }
+//   }
 
   return (
     <div className="App">
@@ -299,6 +323,7 @@ const App = () => {
                 <button onClick={() => bridgeCrvLido()}>
                   Swap ETH to wstETH
                 </button>
+
               </div>
             ) : (
               ""
