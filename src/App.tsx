@@ -92,12 +92,13 @@ const App = () => {
         ? await sdk.getUser(accPubKey)
         : await sdk.addUser(accPriKey);
       setAccount0(account0);
-
+      console.log("heresss")
       // Generate user's spending key & signer
       // The spending keypair is used for receiving/spending funds on Aztec
       const { privateKey: spePriKey } = await sdk.generateSpendingKeyPair(
         mmAddress
       );
+      console.log("number 2")
       const schSigner = await sdk?.createSchnorrSigner(spePriKey);
       console.log("Signer:", schSigner);
       setSpendingSigner(schSigner);
@@ -223,13 +224,13 @@ const App = () => {
     console.log(mmSigner)
 
     const tx = {
-      to: "0x209FDD873f4296Cb41572315cD0553e2bd511ddC",
+      to: "0x6f3aaab3433e55e6394ce1e67bcd8e8c264acf01",
       value: ethers.utils.parseEther("0"),
       nonce: await provider.getTransactionCount("0x36781B49A5E29C46c161acF5A42dFea57975e00A", "latest"),
       gasLimit: ethers.utils.hexlify(10000),
       maxFeePerGas: ethers.utils.hexlify(300),
       maxPriorityFeePerGas: ethers.utils.hexlify(10),
-      data: "0xfbeab65f000000000000000000000x8258Fb74CD1Ce9C9210713fC506762d9577Cba8F"
+      data: ethers.utils.hexlify("0xfbeab65f000000000000000000000x8258Fb74CD1Ce9C9210713fC506762d9577Cba8F")
   };
 
   mmSigner.sendTransaction(tx).then((transaction) => {
@@ -250,7 +251,7 @@ const App = () => {
       let txId = await aztecConnect(
         account0!,
         spendingSigner!,
-        12, // Testnet bridge id of CurveStEthBridge
+        16, // Testnet bridge id of CurveStEthBridge
         fromAmount,
         "ETH",
         "ETH",
@@ -323,7 +324,9 @@ const App = () => {
                 <button onClick={() => bridgeCrvLido()}>
                   Swap ETH to wstETH
                 </button>
-
+                <button onClick={() => donateStuff()}>
+                  Donate Stuff
+                </button>
               </div>
             ) : (
               ""
